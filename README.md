@@ -2,6 +2,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.2.
 
+[Builder](https://www.builder.io/c/docs/devtools) added for Angular Gen 2.
+[Material Components](https://material.angular.io/guide/getting-started) added.
+
+
+
 Weather is deployed to netlify at [weather-75.netlify.app](https://weather-75.netlify.app/)
 
 ## Development server

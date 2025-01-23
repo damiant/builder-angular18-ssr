@@ -1,5 +1,5 @@
 {
-  "name": "weather",
+  "name": "builder-angular-18-ssr",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -13,10 +13,12 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^18.2.0",
+    "@angular/cdk": "18.2.14",
     "@angular/common": "^18.2.0",
     "@angular/compiler": "^18.2.0",
     "@angular/core": "^18.2.0",
     "@angular/forms": "^18.2.0",
+    "@angular/material": "18.2.14",
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/platform-server": "^18.2.0",
