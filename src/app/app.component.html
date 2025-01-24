@@ -1,30 +1,5 @@
-<main class="main">
-  @if (weatherInfo().title) {
-  <h1>{{weatherInfo().title}} Weather</h1>
+<main class="main">  
 
-
-  <form (ngSubmit)="onSubmit()">
-    <label for="zip">Zip Code</label>
-    <input name="zip" id="zip" required [(ngModel)]="enteredZip" />
-    <button type="submit">Go</button>
-  </form>
-
-  <div class="days">
-    @for (day of weatherInfo().days; track day) {
-    <div class="day">
-      <h2>{{day.day}}</h2>
-      @for (forecast of day.forecasts; track forecast) {
-      <div class="temps">
-        <p class="fixed">{{forecast.time}}</p>
-        <p class="temp">{{forecast.temperature}}°</p>
-        <img class="icon" [alt]="forecast.description" [src]="'https://openweathermap.org/img/wn/'+forecast.icon+'@2x.png'" />
-        <p>{{forecast.description}}</p>
-      </div>
-      }
-    </div>
-    }
-  </div>
-  }
-</main>
 
 <router-outlet />
+</main>

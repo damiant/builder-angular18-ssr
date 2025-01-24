@@ -31,7 +31,7 @@ import { CUSTOM_COMPONENTS } from "../builder-registry";
 export class BuilderPage {
   isPreviewing = isPreviewing();
 
-  @Input() model = "page";
+  @Input() model = undefined;
 
   apiKey = environment.builderApiKey;
 
@@ -40,10 +40,12 @@ export class BuilderPage {
   customComponents = CUSTOM_COMPONENTS;
 
   async ngOnInit() {
-    const urlPath = window.location.pathname || "/";
+    
+    const urlPath = window.location.pathname || "/";    
+    console.log(`BuilderPage ngOnInit urlPath=${urlPath} model=${this.model}`);
 
     const builderContent = await fetchOneEntry({
-      model: this.model,
+      model: this.model ?? 'page',
       apiKey: this.apiKey,
       userAttributes: {
         urlPath,
