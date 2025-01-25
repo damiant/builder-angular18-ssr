@@ -1,11 +1,11 @@
-import { Component, Input } from "@angular/core";
+import { Component, inject, Input } from "@angular/core";
 import {
   fetchOneEntry,
   type BuilderContent,
   isPreviewing,
 } from "@builder.io/sdk-angular";
 import { Content } from "@builder.io/sdk-angular";
-import { CommonModule } from "@angular/common";
+import { CommonModule, Location } from "@angular/common";
 import { environment } from "../../environments/environment";
 import { CUSTOM_COMPONENTS } from "../builder-registry";
 
@@ -31,7 +31,8 @@ import { CUSTOM_COMPONENTS } from "../builder-registry";
 export class BuilderPage {
   isPreviewing = isPreviewing();
 
-  @Input() model = undefined;
+  model = 'page';
+  //@Input() model = 'page';
 
   apiKey = environment.builderApiKey;
 
@@ -39,13 +40,15 @@ export class BuilderPage {
 
   customComponents = CUSTOM_COMPONENTS;
 
+  location = inject(Location);
+
   async ngOnInit() {
-    
-    const urlPath = window.location.pathname || "/";    
+    const urlPath = this.location.path() || "/";   
+    //const urlPath = window.location.pathname || "/";    
     console.log(`BuilderPage ngOnInit urlPath=${urlPath} model=${this.model}`);
 
     const builderContent = await fetchOneEntry({
-      model: this.model ?? 'page',
+      model: this.model,
       apiKey: this.apiKey,
       userAttributes: {
         urlPath,

@@ -1,7 +1,7 @@
-import { Component, Input } from "@angular/core";
+import { Component, inject, Input } from "@angular/core";
 import { fetchOneEntry, type BuilderContent } from "@builder.io/sdk-angular";
 import { Content } from "@builder.io/sdk-angular";
-import { CommonModule } from "@angular/common";
+import { CommonModule, Location } from "@angular/common";
 import { environment } from "../../environments/environment";
 import { CUSTOM_COMPONENTS } from "../builder-registry";
 
@@ -24,11 +24,14 @@ export class BuilderSymbol {
   apiKey = environment.builderApiKey;
 
   content: BuilderContent | null = null;
+  location = inject(Location);
+  customComponents = CUSTOM_COMPONENTS;  
 
-  customComponents = CUSTOM_COMPONENTS;
 
   async ngOnInit() {
-    const urlPath = window.location.pathname || "/";
+    //const urlPath = window.location.pathname || "/";
+    const urlPath = this.location.path().split('?')[0] || '/';
+    
     console.log(`Symbol urlPath=${urlPath}`);
 
     const builderContent = await fetchOneEntry({
