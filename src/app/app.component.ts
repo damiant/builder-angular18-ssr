@@ -1,7 +1,5 @@
-import { Component, inject, Input, OnInit, signal } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
-import { WeatherService } from './weather.service';
-import { WeatherInfo } from '../models/weather-info';
+import { Component, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { register } from "@builder.io/sdk-angular";
 

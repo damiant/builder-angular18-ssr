@@ -6,7 +6,7 @@ import { environment } from "../../environments/environment";
 import { CUSTOM_COMPONENTS } from "../builder-registry";
 
 @Component({
-  selector: "app-figma-imports",
+  selector: "app-symbol",
   standalone: true,
   imports: [Content, CommonModule],
   template: `
@@ -18,9 +18,8 @@ import { CUSTOM_COMPONENTS } from "../builder-registry";
     ></builder-content>
   `,
 })
-export class FigmaImportsPage {
-  // TODO BUG HERE: This should use input signals instead of @Input decorator
-  @Input() model = "figma-imports"; // TODO BUG HERE: This comes in as undefined
+export class BuilderSymbol {
+  model = "symbol";
 
   apiKey = environment.builderApiKey;
 
@@ -28,12 +27,10 @@ export class FigmaImportsPage {
 
   customComponents = CUSTOM_COMPONENTS;
 
-  // TODO BUG HERE: Need symbol integration here
-
   async ngOnInit() {
-    const urlPath = window.location.pathname || "/"; // TODO BUG HERE: window is not defined in SSR
+    const urlPath = window.location.pathname || "/";
+    console.log(`Symbol urlPath=${urlPath}`);
 
-    // TODO BUG HERE: fetch calls here do not go through httpClient which is SSR friendly so it will run client side and not work with caching
     const builderContent = await fetchOneEntry({
       model: this.model,
       apiKey: this.apiKey,
