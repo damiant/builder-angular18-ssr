@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { states } from "./us-states";
 import { creditScores } from "./credit-scores";
-import { RECAPTCHA_V3_SITE_KEY, RecaptchaModule, ReCaptchaV3Service } from "ng-recaptcha-2";
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module, ReCaptchaV3Service } from "ng-recaptcha-2";
 import { environment } from "~/environments/environment";
 
 interface Form {
@@ -26,7 +26,7 @@ interface Form {
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: environment.reCAPTCHASiteKey },
     ReCaptchaV3Service
   ],
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, RecaptchaModule],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, RecaptchaV3Module],
 })
 export class GetStartedComponent implements OnInit {
   private scriptElement: HTMLScriptElement | null = null;
