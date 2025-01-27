@@ -8,6 +8,7 @@ import { states } from "./us-states";
 import { creditScores } from "./credit-scores";
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module, ReCaptchaV3Service } from "ng-recaptcha-2";
 import { environment } from "~/environments/environment";
+import { Subscription } from "rxjs";
 
 interface Form {
   propertyValue: number | string;
@@ -31,6 +32,7 @@ interface Form {
 export class GetStartedComponent implements OnInit {
   private scriptElement: HTMLScriptElement | null = null;
   private recaptchaV3Service = inject(ReCaptchaV3Service);
+  private recaptchaSubscription: Subscription | undefined;
   @Input() question1: string = 'What is your name?';
 
   states = states;
@@ -38,8 +40,7 @@ export class GetStartedComponent implements OnInit {
 
   ngOnInit() {
     //this.loadScript('https://www.google.com/recaptcha/api.js');
-    this.recaptchaV3Service.execute('importantAction')
-      .subscribe((token) => this.handleToken(token));
+
   }
   form: Form = {
     propertyValue: '',
@@ -56,16 +57,21 @@ export class GetStartedComponent implements OnInit {
   }
 
   handleToken(token: any) {
-    console.log(token);
-  } 
-  onSubmit(token: any) {    
-    console.log(token);
-    console.log(this.form);
+    console.log('Handle token', token);
+  }
+  onSubmit(data: any) {
     // Add your validation logic
     if (this.form.state.length != 2) {
       alert("Please select a state");
       return;
     }
+    if (this.recaptchaSubscription) {
+      this.recaptchaSubscription.unsubscribe();
+    }
+    this.recaptchaSubscription = this.recaptchaV3Service.execute('importantAction')
+      .subscribe((token) => this.handleToken(token));
+    console.log(this.form);
+
   }
 
 }
