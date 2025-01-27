@@ -1,33 +1,25 @@
 @use '@angular/material' as mat;
 
-@include mat.core();
 
-// Define a dark theme
-$dark-theme: mat.define-theme((
-  color: (
-    theme-type: dark,
-    primary: mat.$violet-palette,
-  ),
-));
+$theme: mat.define-theme((color: (theme-type: light,
+        primary: mat.$violet-palette,
+        tertiary: mat.$blue-palette,
+      )));
 
-// Define a light theme
-$light-theme: mat.define-theme((
-  color: (
-    theme-type: light,
-    primary: mat.$violet-palette,
-  ),
-));
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 30px;
+  height: 100%;
 
-html {
-  // Apply the dark theme by default
-  @include mat.core-theme($dark-theme);
-  @include mat.button-theme($dark-theme);
-
-  // Apply the light theme only when the user prefers light themes.
-  @media (prefers-color-scheme: light) {
-    // Use the `-color` mixins to only apply color styles without reapplying the same
-    // typography and density styles.
-    @include mat.core-color($light-theme);
-    @include mat.button-color($light-theme);
-  }
+  @include mat.all-component-themes($theme);
 }
+
+
+button {
+  background-color: #501283 !important;
+  text-transform: uppercase !important;
+}
+
+@include mat.core();
+@include mat.color-variants-backwards-compatibility($theme);

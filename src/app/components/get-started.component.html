@@ -1,11 +1,35 @@
 <form class="example-form">
-    <mat-form-field class="example-full-width">
-      <mat-label>Favorite food</mat-label>
-      <input matInput placeholder="Ex. Pizza" value="Sushi">
-    </mat-form-field>
-  
-    <mat-form-field class="example-full-width">
-      <mat-label>Leave a comment</mat-label>
-      <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-    </mat-form-field>
-  </form>
+  <mat-form-field>
+    <mat-label>Property State</mat-label>
+    <mat-select name="State" [(ngModel)]="form.state">
+      @for (state of states; track state.abbreviation) {
+      <mat-option [value]="state.abbreviation">{{state.name}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Credit Score</mat-label>
+    <mat-select name="CreditScore" [(ngModel)]="form.creditScore">
+      @for (creditscore of creditscores; track creditscore.value) {
+      <mat-option [value]="creditscore.value">{{creditscore.range}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Desired Loan Amount</mat-label>
+    <input matInput placeholder="Ex. 100,000" [value]="form.loanAmount">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Estimated Property Value</mat-label>
+    <input matInput placeholder="Ex. 650,0000" [value]="form.propertyValue">
+  </mat-form-field>
+
+  <div class="example-button-row">
+  <button (click)="submit()" mat-flat-button extended>    
+    Continue
+  </button>
+</div>
+</form>
