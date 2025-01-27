@@ -3,7 +3,6 @@ import { Counter } from "./components/counter.component";
 import { GetStartedComponent } from "./components/get-started.component";
 
 export const CUSTOM_COMPONENTS: RegisteredComponent[] = [
-
   {
     component: GetStartedComponent,
     name: "Get Started Form",
