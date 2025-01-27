@@ -35,7 +35,7 @@ Make sure to pass the token to your backend and use your Google Private Key to v
 
 ## Builder Form: Get Started
 
-The []"Get Started" form](./src/app/components/get-started.component.html) is registered with Builder in [builder-register.ts](./src/app/builder-registry.ts).
+The ["Get Started" form](./src/app/components/get-started.component.html) is registered with Builder in [builder-register.ts](./src/app/builder-registry.ts).
 
 
 ## Development server
