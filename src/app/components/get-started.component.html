@@ -1,4 +1,4 @@
-<form class="example-form">
+<form class="example-form" (ngSubmit)="onSubmit(myForm.value)" #myForm="ngForm">
   <mat-form-field>
     <mat-label>Property State</mat-label>
     <mat-select name="State" [(ngModel)]="form.state">
@@ -28,8 +28,9 @@
   </mat-form-field>
 
   <div class="example-button-row">
-  <button (click)="submit()" mat-flat-button extended>    
-    Continue
-  </button>
-</div>
+    <button type="submit" class="g-recaptcha" data-sitekey="6Lf08MQqAAAAAGbQidBfm3NanIQvx4zVIT5F-pyn" data-callback='onSubmit'
+      data-action='submit' mat-flat-button extended>
+      Continue
+    </button>
+  </div>
 </form>
