@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { states } from "./us-states";
 import { creditScores } from "./credit-scores";
 import { environment } from "~/environments/environment";
+declare var grecaptcha : any;
 
 
 interface Form {
@@ -14,6 +15,7 @@ interface Form {
   loanAmount: number | string;
   state: string;
   creditScore: number | string;
+  reCAPTCHAToken: string;
 }
 
 @Component({
@@ -34,14 +36,15 @@ export class GetStartedComponent implements OnInit {
   creditscores = creditScores;
 
   ngOnInit() {
-    this.loadScript('https://www.google.com/recaptcha/api.js?render=6Lf08MQqAAAAAGbQidBfm3NanIQvx4zVIT5F-pyn');
-
+    this.loadScript(`https://www.google.com/recaptcha/api.js?render=${environment.reCAPTCHASiteKey}`);
   }
+
   form: Form = {
     propertyValue: '',
     loanAmount: '',
     state: "",
-    creditScore: ''
+    creditScore: '',
+    reCAPTCHAToken: ''
   };
 
   private loadScript(src: string) {
@@ -58,8 +61,8 @@ export class GetStartedComponent implements OnInit {
       return;
     }
     const token: string = await grecaptcha.execute(environment.reCAPTCHASiteKey, { action: "login" });
-    console.log('Token', token);
-    console.log(this.form);
+    this.form.reCAPTCHAToken = token;
+    console.log(`Submit this to the backend`,this.form);
 
   }
 
