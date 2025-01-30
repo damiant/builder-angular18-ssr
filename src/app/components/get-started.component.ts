@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, ElementRef, inject, Input, OnInit, Renderer2 } from "@angular/core";
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -30,6 +30,8 @@ interface Form {
 })
 export class GetStartedComponent implements OnInit {
   private scriptElement: HTMLScriptElement | null = null;
+  private renderer = inject(Renderer2);
+  private el: ElementRef | undefined;
   @Input() question1: string = 'What is your name?';
 
   states = states;
@@ -48,10 +50,13 @@ export class GetStartedComponent implements OnInit {
   };
 
   private loadScript(src: string) {
-    this.scriptElement = document.createElement('script');
+    this.scriptElement = this.renderer.createElement('script');
+    if (this.scriptElement) {
     this.scriptElement.src = src;
     this.scriptElement.type = 'text/javascript';
-    document.body.appendChild(this.scriptElement);
+    
+    this.renderer.appendChild(this.el?.nativeElement.querySelect('#myForm'),this.scriptElement);
+    }
   }
 
   async onSubmit(data: any) {
