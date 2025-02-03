@@ -6,17 +6,16 @@ import { environment } from "../../environments/environment";
 import { CUSTOM_COMPONENTS } from "../builder-registry";
 
 @Component({
-  selector: "app-figma-imports",
-  standalone: true,
-  imports: [Content, CommonModule],
-  template: `
+    selector: "app-figma-imports",
+    imports: [Content, CommonModule],
+    template: `
     <builder-content
       [model]="model"
       [content]="content"
       [apiKey]="apiKey"
       [customComponents]="customComponents"
     ></builder-content>
-  `,
+  `
 })
 export class FigmaImportsPage {
   // TODO BUG HERE: This should use input signals instead of @Input decorator

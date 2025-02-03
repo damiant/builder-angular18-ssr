@@ -6,17 +6,16 @@ import { environment } from "../../environments/environment";
 import { CUSTOM_COMPONENTS } from "../builder-registry";
 
 @Component({
-  selector: "app-section",
-  standalone: true,
-  imports: [Content, CommonModule],
-  template: `
+    selector: "app-section",
+    imports: [Content, CommonModule],
+    template: `
     <builder-content
       [model]="model"
       [content]="content"
       [apiKey]="apiKey"
       [customComponents]="customComponents"
     ></builder-content>
-  `,
+  `
 })
 export class BuilderSection {
   @Input() model = "section";
@@ -30,7 +29,7 @@ export class BuilderSection {
 
   async ngOnInit() {
     const urlPath = window.location.pathname || "/";
-    console.log(`urlPath=${urlPath}, name=${this.name}`);
+    //console.log(`urlPath=${urlPath}, name=${this.name}`);
 
     const builderContent = await fetchOneEntry({
       model: this.model,
