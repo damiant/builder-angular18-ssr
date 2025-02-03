@@ -10,10 +10,9 @@ import { environment } from "../../environments/environment";
 import { CUSTOM_COMPONENTS } from "../builder-registry";
 
 @Component({
-  selector: "app-builder-page",
-  standalone: true,
-  imports: [Content, CommonModule],
-  template: `
+    selector: "app-builder-page",
+    imports: [Content, CommonModule],
+    template: `
     <ng-container *ngIf="content || isPreviewing; else notFound">
       <builder-content
         [model]="model"
@@ -26,7 +25,7 @@ import { CUSTOM_COMPONENTS } from "../builder-registry";
     <ng-template #notFound>
       <div>404 - Content not found</div>
     </ng-template>
-  `,
+  `
 })
 export class BuilderPage {
   isPreviewing = isPreviewing();
@@ -45,7 +44,7 @@ export class BuilderPage {
   async ngOnInit() {
     const urlPath = this.location.path() || "/";   
     //const urlPath = window.location.pathname || "/";    
-    console.log(`BuilderPage ngOnInit urlPath=${urlPath} model=${this.model}`);
+   //console.log(`BuilderPage ngOnInit urlPath=${urlPath} model=${this.model}`);
 
     const builderContent = await fetchOneEntry({
       model: this.model,

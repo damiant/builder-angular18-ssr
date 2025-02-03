@@ -19,14 +19,13 @@ interface Form {
 }
 
 @Component({
-  selector: "app-get-started",
-  standalone: true,
-  templateUrl: './get-started.component.html',
-  styleUrl: './get-started.component.scss',
-  providers: [
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } }
-  ],
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule],
+    selector: "app-get-started",
+    templateUrl: './get-started.component.html',
+    styleUrl: './get-started.component.scss',
+    providers: [
+        { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } }
+    ],
+    imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule]
 })
 export class GetStartedComponent implements OnInit {
   private scriptElement: HTMLScriptElement | null = null;
@@ -38,7 +37,7 @@ export class GetStartedComponent implements OnInit {
   creditscores = creditScores;
 
   ngOnInit() {
-    this.loadScript(`https://www.google.com/recaptcha/api.js?render=${environment.reCAPTCHASiteKey}`);
+    //this.loadScript(`https://www.google.com/recaptcha/api.js?render=${environment.reCAPTCHASiteKey}`);
   }
 
   form: Form = {
