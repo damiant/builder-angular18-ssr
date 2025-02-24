@@ -7,6 +7,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 You can find this example deployed to [builder-angular-ssr.netlify.app](https://builder-angular-ssr.netlify.app/).
 
+## Multistep Custom Component
+
+As an example of a builder custom component that has inputs take a look at the [MultiStepComponent](src/app/components/multi-step.component.ts). It asks questions and the idea is to allow a content editor to define any questions they may have.
+
+It is [registered with Builder](src/app/builder-registry.ts) with some [example questions](src/app/components/multi-step-questions.ts).
+
+Here's a [video of what this looks like](https://www.loom.com/share/d8699158f41a4654a5a4a50d4791ff11?sid=69b877f4-279f-444b-b540-c063a6dc668a) and an expanation of the code.
+
 ## ReCAPTCHA
 Google ReCAPTCHA is integrated into the form found in [get-started.component.ts](./src/app/components/get-started.component.ts).
 
