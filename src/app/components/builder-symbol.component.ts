@@ -6,16 +6,16 @@ import { environment } from "../../environments/environment";
 import { CUSTOM_COMPONENTS } from "../builder-registry";
 
 @Component({
-    selector: "app-symbol",
-    imports: [Content, CommonModule],
-    template: `
+  selector: "app-symbol",
+  imports: [Content, CommonModule],
+  template: `
     <builder-content
       [model]="model"
       [content]="content"
       [apiKey]="apiKey"
       [customComponents]="customComponents"
     ></builder-content>
-  `
+  `,
 })
 export class BuilderSymbol {
   model = "symbol";
@@ -24,13 +24,12 @@ export class BuilderSymbol {
 
   content: BuilderContent | null = null;
   location = inject(Location);
-  customComponents = CUSTOM_COMPONENTS;  
-
+  customComponents = CUSTOM_COMPONENTS;
 
   async ngOnInit() {
     //const urlPath = window.location.pathname || "/";
-    const urlPath = this.location.path().split('?')[0] || '/';
-    
+    const urlPath = this.location.path().split("?")[0] || "/";
+
     //console.log(`Symbol urlPath=${urlPath}`);
 
     const builderContent = await fetchOneEntry({
