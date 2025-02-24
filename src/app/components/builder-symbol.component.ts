@@ -7,7 +7,6 @@ import { CUSTOM_COMPONENTS } from "../builder-registry";
 
 @Component({
   selector: "app-symbol",
-  standalone: true,
   imports: [Content, CommonModule],
   template: `
     <builder-content
@@ -25,14 +24,13 @@ export class BuilderSymbol {
 
   content: BuilderContent | null = null;
   location = inject(Location);
-  customComponents = CUSTOM_COMPONENTS;  
-
+  customComponents = CUSTOM_COMPONENTS;
 
   async ngOnInit() {
     //const urlPath = window.location.pathname || "/";
-    const urlPath = this.location.path().split('?')[0] || '/';
-    
-    console.log(`Symbol urlPath=${urlPath}`);
+    const urlPath = this.location.path().split("?")[0] || "/";
+
+    //console.log(`Symbol urlPath=${urlPath}`);
 
     const builderContent = await fetchOneEntry({
       model: this.model,

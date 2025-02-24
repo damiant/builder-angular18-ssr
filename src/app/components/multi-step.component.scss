@@ -1,0 +1,66 @@
+.example-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+}
+
+.row {
+  padding: 0.5rem;
+}
+
+.bar {
+  background-color: var(
+    --mdc-text-button-label-text-color,
+    var(--mat-sys-primary)
+  );
+  height: 5px;
+  border-radius: 10px;
+  width: 50%;  
+  align-self: center;
+}
+
+a {
+  align-self: center;
+}
+
+.long {
+  width: 75%;
+}
+
+span {
+  font-size: var(
+    --mdc-text-button-label-text-size,
+    var(--mat-sys-label-large-size)
+  );
+  color: var(--mdc-text-button-label-text-color, var(--mat-sys-primary));
+  align-self: center;
+}
+
+.step {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 2rem;
+  justify-content: space-between;
+}
+
+h3 {
+  font-size: 36px;
+}
+
+.ld-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-flow: wrap;
+}
+
+.ld-button {
+  padding: 2rem !important;
+  text-transform: none !important;
+  margin: 0.5rem;
+  text-align: center;
+  color: black;
+  background-color: white !important;
+}

@@ -1,0 +1,55 @@
+@if (done()) {
+  <div class="example-form">
+    <h3>Thank you</h3>
+    <p>We'll get back to you shortly.</p>
+  </div>
+} @else {
+<form class="example-form" #myForm="ngForm">
+  <div class="step">
+    @if (!isFirst()) {
+    <a (click)="previous()" mat-button>&lt; Previous</a>
+    <div class="bar"></div>
+    } @else {
+    <div class="bar long"></div>
+    }
+    <span>Step {{step() + 1}} of {{steps()}}</span>
+  </div>
+  <h3>{{question().title}}</h3>
+  <p>{{question().subtitle}}</p>
+
+  <!--Combo Box Select-->
+  @if (question().type === 'dropdown') {
+  <mat-form-field>
+    <mat-label>{{question()!.label}}</mat-label>
+    <mat-select name="State" [(ngModel)]="question()!.answer">
+      @for (value of question().values ?? []; track value) {
+      <mat-option [value]="value">{{value}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  }
+
+  @if (question().type === 'email') {
+  <mat-form-field>
+    <mat-label>{{question().label}}</mat-label>
+    <input type="email" name="qInput" matInput [placeholder]="question().placeholder ?? ''" [(ngModel)]="question().answer">
+  </mat-form-field>
+  }
+
+  @if (question().type === 'buttons') {
+  <div class="ld-buttons">
+    @for (value of question().values; track value) {
+    <button (click)="selectAnswer(value)" mat-raised-button class="ld-button">{{value}}</button>
+    }
+  </div>
+  }
+
+  <div class="row">
+    @if (showContinue()) {
+    <button (click)="next()" mat-flat-button extended>
+      {{isLast() ? 'Submit' : 'Continue'}}
+    </button>
+    }
+  </div>
+</form>
+}
