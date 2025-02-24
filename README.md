@@ -13,10 +13,31 @@ As an example of a builder custom component that has inputs take a look at the [
 
 It is [registered with Builder](src/app/builder-registry.ts) with some [example questions](src/app/components/multi-step-questions.ts).
 
+Here is the component registration showing `inputs` ([docs](https://www.builder.io/c/docs/custom-components-input-types#input-types)):
+```
+{
+    component: MultiStepComponent,
+    name: "Multi Step Form",
+    meta: {
+      selector: "app-multi-step",
+      standalone: true,
+    },
+    inputs: [
+      {
+        friendlyName: "Questions",
+        name: "questions",
+        helperText: `Tip: type can be "email", "text", "dropdown", "buttons". Refresh after changing.`,
+        type: "json",
+        defaultValue: exampleQuestions,
+      },
+    ],
+  }
+```
+
 Here's a [video of what this looks like](https://www.loom.com/share/d8699158f41a4654a5a4a50d4791ff11?sid=69b877f4-279f-444b-b540-c063a6dc668a) and an expanation of the code.
 
 ## ReCAPTCHA
-Google ReCAPTCHA is integrated into the form found in [get-started.component.ts](./src/app/components/get-started.component.ts).
+Google ReCAPTCHA is integrated into the Getting Started form found in [get-started.component.ts](./src/app/components/get-started.component.ts).
 
 How to integrate:
 First run `npm install @types/grecaptcha`
