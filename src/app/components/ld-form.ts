@@ -1,5 +1,14 @@
-import { Component, ElementRef, inject, Input, Renderer2 } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { DOCUMENT } from "@angular/common";
+import {
+  Component,
+  ElementRef,
+  Inject,
+  inject,
+  Input,
+  Renderer2,
+  ViewChild,
+} from "@angular/core";
+import { FormsModule, NgForm } from "@angular/forms";
 import { environment } from "~/environments/environment";
 
 @Component({
@@ -10,10 +19,12 @@ import { environment } from "~/environments/environment";
   standalone: true,
 })
 export class LDForm {
-  @Input() submitUrl: string = '';
+  @Input() submitUrl: string = "";
   private scriptElement: HTMLScriptElement | null = null;
+  @ViewChild("myForm") myForm!: NgForm;
   private el: ElementRef | undefined;
   private renderer = inject(Renderer2);
+  private document = inject(DOCUMENT);
 
   async ngOnInit(): Promise<void> {
     this.loadScript(
@@ -22,20 +33,14 @@ export class LDForm {
   }
 
   private loadScript(src: string) {
-    this.scriptElement = this.renderer.createElement("script");
-    if (this.scriptElement) {
-      this.scriptElement.src = src;
-      this.scriptElement.type = "text/javascript";
-
-      this.renderer.appendChild(
-        this.el?.nativeElement.querySelect("#myForm"),
-        this.scriptElement
-      );
-    }
+    const scriptElement = this.renderer.createElement("script");
+    if (!scriptElement) return;
+    scriptElement.src = src;
+    scriptElement.type = "text/javascript";
+    this.renderer.appendChild(this.document.head, scriptElement);
   }
 
   public onSubmit(form: any) {
     console.log(`Submit to ${this.submitUrl}`, form);
   }
 }
-

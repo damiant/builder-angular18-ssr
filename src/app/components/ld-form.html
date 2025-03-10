@@ -1,2 +1,3 @@
-<form class="example-form" (ngSubmit)="onSubmit(myForm.value)" #myForm="ngForm">
+<form (ngSubmit)="onSubmit(myForm.value)" #myForm="ngForm">
+    <ng-content></ng-content>
 </form>
