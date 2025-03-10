@@ -3,6 +3,7 @@ import { Counter } from "./components/counter.component";
 import { GetStartedComponent } from "./components/get-started.component";
 import { MultiStepComponent } from "./components/multi-step.component";
 import { exampleQuestions } from "./components/multi-step-questions";
+import { LDForm } from "./components/ld-form";
 
 export const CUSTOM_COMPONENTS: RegisteredComponent[] = [
   // Multi Step Component
@@ -22,6 +23,17 @@ export const CUSTOM_COMPONENTS: RegisteredComponent[] = [
         defaultValue: exampleQuestions,
       },
     ],
+  },
+
+  {
+    component: LDForm,
+    name: "LD Form",
+    meta: {
+      selector: "app-ld-form",
+      standalone: true,
+    },
+    canHaveChildren: true,
+    inputs: [{ name: "submitUrl", type: "string" }],
   },
 
   // Get Started Component

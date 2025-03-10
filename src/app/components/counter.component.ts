@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { getTranslations } from "../translations";
 
 @Component({
   selector: "app-counter",
@@ -52,8 +53,11 @@ export class Counter {
     this.count = this.initialCount;
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.count = this.initialCount;
+    
+      const obj = await getTranslations("promo", GetPromoData());
+   
   }
 
   increment(): void {
@@ -63,4 +67,16 @@ export class Counter {
   decrement(): void {
     this.count -= 1;
   }
+}
+
+function GetPromoData() {
+  return {
+    promo_applied_header: "PROMO CODE {0} HAS BEEN APPLIED.",
+    promo_expired_header: "PROMO CODE {0} HAS EXPIRED.",
+    promo_expired_body:
+      "You may apply another promo code when choosing your plan.",
+    use_code_text: "When choosing your plan use promo code:",
+    promo_footer:
+      "You will see your incentives applied when you choose your plan.",
+  };
 }
