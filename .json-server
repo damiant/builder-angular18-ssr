@@ -1,0 +1,31 @@
+{
+  "movies": [
+    {
+      "id": "1",
+      "name": "The Godfather",
+      "director": "Francis Ford Coppola",
+      "rating": 9.1
+    },
+    {
+      "id": "2",
+      "name": "Casablanca",
+      "director": "Michael Curtiz",
+      "rating": 8.8
+    },
+    {
+      "id": "bffa",
+      "name": "tewet",
+      "email": "wetwetwet@blar.com"
+    },
+    {
+      "id": "ca23",
+      "name": "test",
+      "email": "test@gmail.com"
+    },
+    {
+      "id": "cb8f",
+      "name": "test",
+      "email": "test@gmail.com"
+    }
+  ]
+}
