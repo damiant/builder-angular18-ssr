@@ -15,6 +15,14 @@ body {
   @include mat.all-component-themes($theme);
 }
 
+:root {
+   --primary-color: #501283;
+   --secondary-color: #128347;
+   --font-size-small: 14px;
+   --font-size-medium: 18px;
+   --font-size-large: 24px;
+   --font-size-huge: 48px;
+}
 
 button {
   background-color: #501283 !important;

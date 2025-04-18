@@ -25,11 +25,24 @@ export class LDForm {
   private el: ElementRef | undefined;
   private renderer = inject(Renderer2);
   private document = inject(DOCUMENT);
+  private formData: any = {};
+  private invalid: string[] = [];
 
   async ngOnInit(): Promise<void> {
     this.loadScript(
       `https://www.google.com/recaptcha/api.js?render=${environment.reCAPTCHASiteKey}`
     );
+    window.addEventListener("message", (event) => {
+      const name = event.data.name as string;
+      if (!name) return;
+      console.log(`${name}=${event.data.value} valid=${event.data.valid}`);
+      this.formData[name] = event.data.valid ? event.data.value : undefined;
+      if (!event.data.valid && !this.invalid.includes(name)) {
+        this.invalid.push(name);
+      } else if (event.data.valid && this.invalid.includes(name)) {
+        this.invalid = this.invalid.filter((i) => i !== name);
+      }
+    });
   }
 
   private loadScript(src: string) {
@@ -41,6 +54,11 @@ export class LDForm {
   }
 
   public onSubmit(form: any) {
-    console.log(`Submit to ${this.submitUrl}`, form);
+    if (this.invalid.length > 0) {
+      alert("There are fields with errors: "+this.invalid.join(", "));
+      return;
+    }
+    console.log(`Submit to ${this.submitUrl}`, this.formData);
+    alert(`Submitting ${JSON.stringify(this.formData)}`);
   }
 }

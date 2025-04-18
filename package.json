@@ -26,6 +26,7 @@
     "@angular/ssr": "^19.2.5",
     "@builder.io/dev-tools": "1.6.13",
     "@builder.io/sdk-angular": "0.18.11",
+    "@maskito/angular": "3.7.1",
     "@types/grecaptcha": "3.0.9",
     "concurrently": "^9.1.2",
     "express": "^4.18.2",

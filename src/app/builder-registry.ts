@@ -4,6 +4,7 @@ import { GetStartedComponent } from "./components/get-started.component";
 import { MultiStepComponent } from "./components/multi-step.component";
 import { exampleQuestions } from "./components/multi-step-questions";
 import { LDForm } from "./components/ld-form";
+import { PhoneNumberComponent } from "./phone-number/phone-number.component";
 
 export const CUSTOM_COMPONENTS: RegisteredComponent[] = [
   // Multi Step Component
@@ -51,6 +52,31 @@ export const CUSTOM_COMPONENTS: RegisteredComponent[] = [
       },
     ],
   },
+
+  // Phone Number Component
+  {
+    component: PhoneNumberComponent,
+    name: "Phone Number",
+    meta: {
+      selector: "app-phone-number",
+      standalone: true,
+    },
+    inputs: [
+      {
+        name: "placeholder",
+        type: "string",
+      },
+      {
+        name: "value",
+        type: "string",
+      },
+      {
+        name: "label",
+        type: "string",
+        defaultValue: "Phone Number",
+      },
+    ],
+  },  
 
   // Counter Component
   {
